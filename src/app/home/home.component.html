@@ -1,0 +1,76 @@
+<div class="container-fluid">
+  <!-- <div class="row mt-4"> -->
+    <div class="ui-g-10">
+      <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0">
+        <!-- <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0"> -->
+          <div class="card-header rounded-0 bg-transparent">Opinator
+          
+          </div>
+          <div class="card-body">
+            <div [hidden]="loader1" class="overlay-loader">
+              <div class="loader">
+                <div class="loader-content">
+                  <loaders-css [loader]="'ball-spin-fade-loader'" 
+                  [loaderClass]="'my-loader ui-g-10'"></loaders-css>
+                </div>
+              </div>
+            </div>
+            <p-chart type="doughnut" [data]="doughnutdata" ></p-chart>
+          </div>
+        </div>
+      </div>
+ 
+   
+    <!-- </div> -->
+   
+   
+    <div class="ui-g-8">
+      <!-- <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0 chart2-top"></div> -->
+      <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0">
+        <div class="card-header rounded-0 bg-transparent">{{ titleChart2 }}
+          <button type="button" class="btn btn-sm btn-light pull-right" tooltip="Exportar" placement="left">
+            <i class="fa fa-file-excel-o"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <div [hidden]="loader1" class="overlay-loader">
+            <div class="loader">
+              <div class="loader-content">
+                <loaders-css [loader]="'ball-spin-fade-loader'" [loaderClass]="'my-loader ui-g-8'"></loaders-css>
+              </div>
+            </div>
+          </div>
+          <p-chart type="horizontalBar" [data]="doughnutdata" [options]="chartOptions"></p-chart>
+        </div>
+      </div>
+      <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0 chart2-bot"></div>
+    </div>
+ 
+ 
+<!--   </div> -->
+
+
+  <!--   <div class="row mt-4">
+    <div class="col">
+      <div class="card shadow border-top-0 border-right-0 border-left-0 rounded-0">
+        <div class="card-header rounded-0 bg-transparent">Visão {{tempo}}
+          <button type="button" class="btn btn-sm btn-light pull-right" tooltip="Exportar" placement="left">
+            <i class="fa fa-file-excel-o"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <p-growl [value]="msgs"></p-growl>
+          <div [hidden]="loader3" class="overlay-loader">
+            <div class="loader">
+              <div class="loader-content">
+                <loaders-css [loader]="'ball-spin-fade-loader'" [loaderClass]="'my-loader ui-g-12'"></loaders-css>
+              </div>
+            </div>
+          </div>
+          <p-chart type="line" [data]="linedata" (onDataSelect)="selectData($event)" width="300" height="100"></p-chart>
+
+        </div>
+      </div>
+    </div>
+  </div> -->
+</div>

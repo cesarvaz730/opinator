@@ -1,0 +1,173 @@
+<header>
+  <nav class="navbar shadow">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="/assets/img/logo-santander.jpg" width="137" height="40" alt="Santander">
+      </a>
+      <a (click)="lgModal.show()" tooltip="Filtre os dados" placement="left">
+        <i class="fa fa-sliders"></i>
+      </a>
+    </div>
+  </nav>
+</header>
+<div *ngIf="this.filter.ano != '' || this.filter.mesNum != '' || this.filter.semanaMes != '' || this.filter.diaSemana != '' || this.filter.rede != '' || this.filter.regional != '' || this.filter.tipo != '' || this.filter.uniorg != '' || this.filter.nome != '' || this.filter.ramal != '' || this.filter.duracao != '' || this.filter.horaLigacao != '' || this.filter.porte != '' || this.filter.numeroEntrada != ''" class="filter-active">
+    <strong>Filtro ativo:</strong>
+    <span *ngIf="this.filter.referencia != ''">Referência: {{ this.filter.referencia }} |</span>
+    <span *ngIf="this.filter.ano != ''">Ano: {{ this.filter.ano }} |</span>
+    <span *ngIf="this.filter.mesNum != ''">Mês: {{ this.filter.mesNum }} |</span>
+    <span *ngIf="this.filter.semanaMes != ''">Semana: {{ this.filter.semanaMes }} |</span>
+    <span *ngIf="this.filter.diaSemana != ''">Dia: {{ this.filter.diaSemana }} |</span>
+    <span *ngIf="this.filter.rede != ''">Rede: {{ this.filter.rede }} |</span>
+    <span *ngIf="this.filter.regional != ''">Regional: {{ this.filter.regional }} |</span>
+    <span *ngIf="this.filter.tipo != ''">Tipo: {{ this.filter.tipo }} |</span>
+    <span *ngIf="this.filter.uniorg != ''">Agência: {{ this.filter.uniorg }} |</span>
+    <span *ngIf="this.filter.nome != ''">Atendimento/Usuário: {{ this.filter.nome }} |</span>
+    <span *ngIf="this.filter.ramal != ''">URA/Ramal Direto: {{ this.filter.ramal }} |</span>
+    <span *ngIf="this.filter.duracao != ''">Duração: {{ this.filter.duracao }} |</span>
+    <span *ngIf="this.filter.horaLigacao != ''">Hora/Inicio: {{ this.filter.horaLigacao }} |</span>
+    <span *ngIf="this.filter.porte != ''">Porte: {{ this.filter.porte }} |</span>
+    <span *ngIf="this.filter.numeroEntrada != ''">Chamador/Telefone: {{ this.filter.numeroEntrada }} |</span>
+  </div>
+<app-home></app-home>
+
+<div bsModal #lgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content shadow rounded-0">
+      <div class="modal-header">
+        <h5 class="modal-title pull-left">Filtro</h5>
+        <button type="button" class="close pull-right" (click)="lgModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <form class="example-form" [formGroup]="filterForm" novalidate (ngSubmit)="submitFilter()">
+        <div class="modal-body">
+          <div class="ui-g">
+
+            <div class="form-group ui-g-2">
+                <label>Referência:</label>
+                <div class="d-block">
+                  <div class="btn-group"  data-toggle="buttons">
+                    <label [ngClass]="{'active': isChecked1 }" class="btn btn-sm btn-outline-danger" btnRadio="Anual" [value]="1" (click)="onSelectReferencia('1')">
+                        Anual
+                    </label>
+                    <label [ngClass]="{'active': isChecked2 }" class="btn btn-sm btn-outline-danger" btnRadio="Mensal" [value]="2" (click)="onSelectReferencia('2')">
+                        Mensal
+                    </label>
+                  </div>
+                </div>
+            </div>
+            <div class="form-group ui-g-3">
+              <label for="mesNum">Período:</label>
+              <select *ngIf="!isChecked1 && !isChecked2" class="form-control">
+                  <!-- <option value="" [selected]="isSelected">Todos</option> -->
+                </select>
+              <select *ngIf="isChecked1" class="form-control" id="ano" formControlName="ano" [(ngModel)]="selectAno">
+               <!--  <option value="" [selected]="isSelected">Todos</option> -->
+                <option *ngFor="let item of comboAno" value="{{item}}">{{ item }}</option>
+              </select>
+              <select *ngIf="isChecked2" class="form-control" id="mesNum" formControlName="mesNum">
+               <!--  <option value="" [selected]="isSelected">Todos</option> -->
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="1">Novembro</option>
+                <option value="12">Dezembro</option>
+              </select>
+            </div>
+            <div class="form-group ui-g-3">
+              <label>Semana:</label>
+              <div class="d-block">
+                <div class="btn-group" id="semanaMes">
+                  <label [ngClass]="{'active': isChecked3 }" class="btn btn-sm btn-outline-danger" btnRadio="1" [value]="1" (click)="onSelectSemana('1')">1º</label>
+                  <label [ngClass]="{'active': isChecked4 }" class="btn btn-sm btn-outline-danger" btnRadio="2" [value]="2" (click)="onSelectSemana('2')">2º</label>
+                  <label [ngClass]="{'active': isChecked5 }" class="btn btn-sm btn-outline-danger" btnRadio="3" [value]="3" (click)="onSelectSemana('3')">3º</label>
+                  <label [ngClass]="{'active': isChecked6 }" class="btn btn-sm btn-outline-danger" btnRadio="4" [value]="4" (click)="onSelectSemana('4')">4º</label>
+                  <label [ngClass]="{'active': isChecked7 }" class="btn btn-sm btn-outline-danger" btnRadio="5" [value]="5" (click)="onSelectSemana('5')">5º</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ui-g-4">
+              <label>Dia da semana:</label>
+              <div class="d-block">
+                <div class="btn-group" id="diaSemana">
+                  <label [ngClass]="{'active': isChecked8 }" class="btn btn-sm btn-outline-danger" btnRadio="2º" (click)="onSelectDia('2')">2º</label>
+                  <label [ngClass]="{'active': isChecked9 }" class="btn btn-sm btn-outline-danger" btnRadio="3º" (click)="onSelectDia('3')">3º</label>
+                  <label [ngClass]="{'active': isChecked10 }" class="btn btn-sm btn-outline-danger" btnRadio="4º" (click)="onSelectDia('4')">4º</label>
+                  <label [ngClass]="{'active': isChecked11 }" class="btn btn-sm btn-outline-danger" btnRadio="5º" (click)="onSelectDia('5')">5º</label>
+                  <label [ngClass]="{'active': isChecked12 }" class="btn btn-sm btn-outline-danger" btnRadio="6º" (click)="onSelectDia('6')">6º</label>
+                  <label [ngClass]="{'active': isChecked13 }" class="btn btn-sm btn-outline-danger" btnRadio="Sáb" (click)="onSelectDia('7')">Sáb</label>
+                  <label [ngClass]="{'active': isChecked14 }" class="btn btn-sm btn-outline-danger" btnRadio="Dom" (click)="onSelectDia('8')">Dom</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ui-g-3">
+              <label for="rede">Rede:</label>
+              <select class="form-control" id="rede" formControlName="rede" (change)="selectRede($event.target.value)">
+                <option value="" [selected]="isSelected">Todos</option>
+                <option *ngFor="let item of comboRede" value="{{item}}">{{ item }}</option>
+              </select>
+            </div>
+            <div class="form-group ui-g-3">
+              <label for="regional">Regional:</label>
+              <select class="form-control" id="regional" formControlName="regional"  (change)="selectRegional($event.target.value)">
+                <option value="" [selected]="isSelected">Todos</option>
+                <option *ngFor="let item of comboRegional" value="{{item}}">{{ item }}</option>
+              </select>
+            </div>
+            <div class="form-group ui-g-4">
+              <label>Situação da Ligação:</label>
+              <div class="d-block">
+                <div class="btn-group" id="tipo">
+                  <label [ngClass]="{'active': isChecked15 }" class="btn btn-sm btn-outline-danger" btnRadio="1" (click)="onSelectTipo('1')">Atendida</label>
+                  <label [ngClass]="{'active': isChecked16 }" class="btn btn-sm btn-outline-danger" btnRadio="2" (click)="onSelectTipo('2')">Não Atendida</label>
+                  <label [ngClass]="{'active': isChecked17 }" class="btn btn-sm btn-outline-danger" btnRadio="3" (click)="onSelectTipo('3')">Tranferidas PF</label>
+                  <label [ngClass]="{'active': isChecked18 }" class="btn btn-sm btn-outline-danger" btnRadio="4" (click)="onSelectTipo('4')">Tranferidas PJ</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-group ui-g-12">
+              <p class="mb-0">Campos com filtros Linha/Detalhe:</p>
+            </div>
+            <div class="form-group ui-g-3">
+              <label for="uniorg">Agência:</label>
+              <select class="form-control" id="uniorg" formControlName="uniorg" (change)="selectAgencia($event.target.value)">
+                <option value="" [selected]="isSelected">Todos</option>
+                <option *ngFor="let item of comboAgencia" value="{{item}}">{{ item }}</option>
+              </select>
+            </div>
+           <!-- <div class="form-group ui-g-3">
+              <label for="porte">Porte da agência:</label>
+              <select class="form-control" id="porte" formControlName="porte">
+                <option value="" [selected]="isSelected">Todos</option>
+                <option *ngFor="let item of comboPorteAg" value="{{item}}">{{ item }}</option>
+              </select>
+            </div> -->
+            <div class="form-group ui-g-3">
+                <label for="segmento">Segmento/Área:</label>
+                <select class="form-control" id="segmento" formControlName="segmento">
+                  <option value="" [selected]="isSelected">Todos</option>
+                  <option value="1">Van Gogh</option>
+                  <option value="2">Fisica</option>
+                  <option value="3">Juridica</option>
+                  <option value="4">Operacional</option>
+                  <option value="5">Fax</option>
+                </select>
+              </div>
+          
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-sm rounded pointer" (click)="resetForm();">Limpar</button>
+          <button type="submit" class="btn btn-sm btn-danger rounded pointer" (click)="lgModal.hide()">Filtrar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

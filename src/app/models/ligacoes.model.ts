@@ -1,0 +1,30 @@
+ export class Ligacoes {  
+	constructor(
+	public id: String,
+    public rede: String,
+	public regional: String,
+	public nome: String,
+	public central: String,
+	public uniorg: String,
+	public ramal:String,
+	public dataLigacao: String,
+	public diaSemana: String,
+	public mes: String,
+	public semanaMes: String,
+	public horaLigacao: String,
+	public numeroEntrada: String,
+	public duracao: String,
+	public quantidade: String,
+	public tipoRamal: String,
+	public tipo: String,
+	public pin: String,
+	public totalPf: String,
+	public totalPj: String,
+	public porte: String,
+	public mesNum: String,
+	public ano: String,
+	public date: String,
+	public referencia: String,
+	public segmento: String
+) { }
+ }

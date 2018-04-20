@@ -1,0 +1,55 @@
+.chart2-top {
+    margin-bottom: 13px;
+    height: 30px;
+}
+
+.chart2-bot {
+    margin-top: 13px;
+    height: 30px;
+}
+
+.card-body {
+    position: relative;
+}
+
+.overlay-loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 10;
+}
+
+.loader {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.loader-content {
+    margin: auto;
+    width: 20px;
+    height: 15px;
+    display: block;
+}
+
+.text-content {
+    display: block;
+    text-align: center;
+    h3 {
+        font-size: 14px;
+        color: #D32F2F;
+    }
+}
+
+.filter-active {
+    padding: 5px 15px;
+}
+
+loaders-css /deep/ .my-loader {
+    background-color: #D32F2F;
+}
