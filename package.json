@@ -31,10 +31,9 @@
     "zone.js": "^0.8.14",
      "angular2-loaders-css": "^2.0.1",
    "angular2-text-mask": "^8.0.4",
-    "bootstrap": "^4.0.0",
     "chart.js": "^2.7.2",
 "font-awesome": "^4.7.0",
-"ngx-bootstrap": "^2.0.0-rc.0",
+
 "primeng": "^5.2.3"
   },
   "devDependencies": {
